@@ -1,0 +1,49 @@
+.reveal h1.subtitle {
+
+font-size: 1.5em;
+
+}
+
+.reveal h2.author {
+
+font-size: 1em;
+
+text-align: right !important;
+
+font-style: italic;
+
+font-weight: normal;
+
+}
+
+.reveal h2 {
+  
+  font-weight: bold;
+  
+  text-align: center !important;
+}
+
+.reveal p {
+  
+  text-align: justify;
+  
+}
+
+pre > code.sourceCode {
+  
+  
+    background-color: #F0FFFF;
+  
+}
+
+.reveal code{
+background-color: gold;
+}
+
+
+.reveal section img {
+display: block;
+    margin-left: auto;
+    margin-right: auto;
+    width: 60%;
+}

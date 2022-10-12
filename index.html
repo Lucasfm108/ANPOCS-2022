@@ -1,0 +1,1555 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="generator" content="pandoc">
+  <meta name="author" content="Lucas Fernandes de Magalhães" />
+  <title>Ensinando Avaliação de impacto</title>
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
+  <link rel="stylesheet" href="index_files/reveal.js-3.3.0.1/css/reveal.css"/>
+
+
+<style type="text/css">
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+<link rel="stylesheet" href="index_files/reveal.js-3.3.0.1/css/theme/simple.css" id="theme">
+
+
+  <!-- some tweaks to reveal css -->
+  <style type="text/css">
+    .reveal h1 { font-size: 2.0em; }
+    .reveal h2 { font-size: 1.5em;  }
+    .reveal h3 { font-size: 1.25em;	}
+    .reveal h4 { font-size: 1em;	}
+
+    .reveal .slides>section,
+    .reveal .slides>section>section {
+      padding: 0px 0px;
+    }
+
+
+
+    .reveal table {
+      border-width: 1px;
+      border-spacing: 2px;
+      border-style: dotted;
+      border-color: gray;
+      border-collapse: collapse;
+      font-size: 0.7em;
+    }
+
+    .reveal table th {
+      border-width: 1px;
+      padding-left: 10px;
+      padding-right: 25px;
+      font-weight: bold;
+      border-style: dotted;
+      border-color: gray;
+    }
+
+    .reveal table td {
+      border-width: 1px;
+      padding-left: 10px;
+      padding-right: 25px;
+      border-style: dotted;
+      border-color: gray;
+    }
+
+
+  </style>
+
+    <style type="text/css">code{white-space: pre;}</style>
+
+    <link rel="stylesheet" href="style.css"/>
+
+<!-- Printing and PDF exports -->
+<script id="paper-css" type="application/dynamic-css">
+
+/* Default Print Stylesheet Template
+   by Rob Glazebrook of CSSnewbie.com
+   Last Updated: June 4, 2008
+
+   Feel free (nay, compelled) to edit, append, and
+   manipulate this file as you see fit. */
+
+
+@media print {
+
+	/* SECTION 1: Set default width, margin, float, and
+	   background. This prevents elements from extending
+	   beyond the edge of the printed page, and prevents
+	   unnecessary background images from printing */
+	html {
+		background: #fff;
+		width: auto;
+		height: auto;
+		overflow: visible;
+	}
+	body {
+		background: #fff;
+		font-size: 20pt;
+		width: auto;
+		height: auto;
+		border: 0;
+		margin: 0 5%;
+		padding: 0;
+		overflow: visible;
+		float: none !important;
+	}
+
+	/* SECTION 2: Remove any elements not needed in print.
+	   This would include navigation, ads, sidebars, etc. */
+	.nestedarrow,
+	.controls,
+	.fork-reveal,
+	.share-reveal,
+	.state-background,
+	.reveal .progress,
+	.reveal .backgrounds {
+		display: none !important;
+	}
+
+	/* SECTION 3: Set body font face, size, and color.
+	   Consider using a serif font for readability. */
+	body, p, td, li, div {
+		font-size: 20pt!important;
+		font-family: Georgia, "Times New Roman", Times, serif !important;
+		color: #000;
+	}
+
+	/* SECTION 4: Set heading font face, sizes, and color.
+	   Differentiate your headings from your body text.
+	   Perhaps use a large sans-serif for distinction. */
+	h1,h2,h3,h4,h5,h6 {
+		color: #000!important;
+		height: auto;
+		line-height: normal;
+		font-family: Georgia, "Times New Roman", Times, serif !important;
+		text-shadow: 0 0 0 #000 !important;
+		text-align: left;
+		letter-spacing: normal;
+	}
+	/* Need to reduce the size of the fonts for printing */
+	h1 { font-size: 28pt !important;  }
+	h2 { font-size: 24pt !important; }
+	h3 { font-size: 22pt !important; }
+	h4 { font-size: 22pt !important; font-variant: small-caps; }
+	h5 { font-size: 21pt !important; }
+	h6 { font-size: 20pt !important; font-style: italic; }
+
+	/* SECTION 5: Make hyperlinks more usable.
+	   Ensure links are underlined, and consider appending
+	   the URL to the end of the link for usability. */
+	a:link,
+	a:visited {
+		color: #000 !important;
+		font-weight: bold;
+		text-decoration: underline;
+	}
+	/*
+	.reveal a:link:after,
+	.reveal a:visited:after {
+		content: " (" attr(href) ") ";
+		color: #222 !important;
+		font-size: 90%;
+	}
+	*/
+
+
+	/* SECTION 6: more reveal.js specific additions by @skypanther */
+	ul, ol, div, p {
+		visibility: visible;
+		position: static;
+		width: auto;
+		height: auto;
+		display: block;
+		overflow: visible;
+		margin: 0;
+		text-align: left !important;
+	}
+	.reveal pre,
+	.reveal table {
+		margin-left: 0;
+		margin-right: 0;
+	}
+	.reveal pre code {
+		padding: 20px;
+		border: 1px solid #ddd;
+	}
+	.reveal blockquote {
+		margin: 20px 0;
+	}
+	.reveal .slides {
+		position: static !important;
+		width: auto !important;
+		height: auto !important;
+
+		left: 0 !important;
+		top: 0 !important;
+		margin-left: 0 !important;
+		margin-top: 0 !important;
+		padding: 0 !important;
+		zoom: 1 !important;
+
+		overflow: visible !important;
+		display: block !important;
+
+		text-align: left !important;
+		-webkit-perspective: none;
+		   -moz-perspective: none;
+		    -ms-perspective: none;
+		        perspective: none;
+
+		-webkit-perspective-origin: 50% 50%;
+		   -moz-perspective-origin: 50% 50%;
+		    -ms-perspective-origin: 50% 50%;
+		        perspective-origin: 50% 50%;
+	}
+	.reveal .slides section {
+		visibility: visible !important;
+		position: static !important;
+		width: auto !important;
+		height: auto !important;
+		display: block !important;
+		overflow: visible !important;
+
+		left: 0 !important;
+		top: 0 !important;
+		margin-left: 0 !important;
+		margin-top: 0 !important;
+		padding: 60px 20px !important;
+		z-index: auto !important;
+
+		opacity: 1 !important;
+
+		page-break-after: always !important;
+
+		-webkit-transform-style: flat !important;
+		   -moz-transform-style: flat !important;
+		    -ms-transform-style: flat !important;
+		        transform-style: flat !important;
+
+		-webkit-transform: none !important;
+		   -moz-transform: none !important;
+		    -ms-transform: none !important;
+		        transform: none !important;
+
+		-webkit-transition: none !important;
+		   -moz-transition: none !important;
+		    -ms-transition: none !important;
+		        transition: none !important;
+	}
+	.reveal .slides section.stack {
+		padding: 0 !important;
+	}
+	.reveal section:last-of-type {
+		page-break-after: avoid !important;
+	}
+	.reveal section .fragment {
+		opacity: 1 !important;
+		visibility: visible !important;
+
+		-webkit-transform: none !important;
+		   -moz-transform: none !important;
+		    -ms-transform: none !important;
+		        transform: none !important;
+	}
+	.reveal section img {
+		display: block;
+		margin: 15px 0px;
+		background: rgba(255,255,255,1);
+		border: 1px solid #666;
+		box-shadow: none;
+	}
+
+	.reveal section small {
+		font-size: 0.8em;
+	}
+
+}  
+</script>
+
+
+<script id="pdf-css" type="application/dynamic-css">
+    
+/**
+ * This stylesheet is used to print reveal.js
+ * presentations to PDF.
+ *
+ * https://github.com/hakimel/reveal.js#pdf-export
+ */
+
+* {
+	-webkit-print-color-adjust: exact;
+}
+
+body {
+	margin: 0 auto !important;
+	border: 0;
+	padding: 0;
+	float: none !important;
+	overflow: visible;
+}
+
+html {
+	width: 100%;
+	height: 100%;
+	overflow: visible;
+}
+
+/* Remove any elements not needed in print. */
+.nestedarrow,
+.reveal .controls,
+.reveal .progress,
+.reveal .playback,
+.reveal.overview,
+.fork-reveal,
+.share-reveal,
+.state-background {
+	display: none !important;
+}
+
+h1, h2, h3, h4, h5, h6 {
+	text-shadow: 0 0 0 #000 !important;
+}
+
+.reveal pre code {
+	overflow: hidden !important;
+	font-family: Courier, 'Courier New', monospace !important;
+}
+
+ul, ol, div, p {
+	visibility: visible;
+	position: static;
+	width: auto;
+	height: auto;
+	display: block;
+	overflow: visible;
+	margin: auto;
+}
+.reveal {
+	width: auto !important;
+	height: auto !important;
+	overflow: hidden !important;
+}
+.reveal .slides {
+	position: static;
+	width: 100%;
+	height: auto;
+
+	left: auto;
+	top: auto;
+	margin: 0 !important;
+	padding: 0 !important;
+
+	overflow: visible;
+	display: block;
+
+	-webkit-perspective: none;
+	   -moz-perspective: none;
+	    -ms-perspective: none;
+	        perspective: none;
+
+	-webkit-perspective-origin: 50% 50%; /* there isn't a none/auto value but 50-50 is the default */
+	   -moz-perspective-origin: 50% 50%;
+	    -ms-perspective-origin: 50% 50%;
+	        perspective-origin: 50% 50%;
+}
+
+.reveal .slides section {
+	page-break-after: always !important;
+
+	visibility: visible !important;
+	position: relative !important;
+	display: block !important;
+	position: relative !important;
+
+	margin: 0 !important;
+	padding: 0 !important;
+	box-sizing: border-box !important;
+	min-height: 1px;
+
+	opacity: 1 !important;
+
+	-webkit-transform-style: flat !important;
+	   -moz-transform-style: flat !important;
+	    -ms-transform-style: flat !important;
+	        transform-style: flat !important;
+
+	-webkit-transform: none !important;
+	   -moz-transform: none !important;
+	    -ms-transform: none !important;
+	        transform: none !important;
+}
+
+.reveal section.stack {
+	margin: 0 !important;
+	padding: 0 !important;
+	page-break-after: avoid !important;
+	height: auto !important;
+	min-height: auto !important;
+}
+
+.reveal img {
+	box-shadow: none;
+}
+
+.reveal .roll {
+	overflow: visible;
+	line-height: 1em;
+}
+
+/* Slide backgrounds are placed inside of their slide when exporting to PDF */
+.reveal section .slide-background {
+	display: block !important;
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	z-index: -1;
+}
+
+/* All elements should be above the slide-background */
+.reveal section>* {
+	position: relative;
+	z-index: 1;
+}
+
+/* Display slide speaker notes when 'showNotes' is enabled */
+.reveal .speaker-notes-pdf {
+	display: block;
+	width: 100%;
+	max-height: none;
+	left: auto;
+	top: auto;
+	z-index: 100;
+}
+
+/* Display slide numbers when 'slideNumber' is enabled */
+.reveal .slide-number-pdf {
+	display: block;
+	position: absolute;
+	font-size: 14px;
+}
+
+</script>
+
+
+<script>
+var style = document.createElement( 'style' );
+style.type = 'text/css';
+var style_script_id = window.location.search.match( /print-pdf/gi ) ? 'pdf-css' : 'paper-css';
+var style_script = document.getElementById(style_script_id).text;
+style.innerHTML = style_script;
+document.getElementsByTagName('head')[0].appendChild(style);
+</script>
+
+    <script src="index_files/header-attrs-2.16/header-attrs.js"></script>
+    <script src="index_files/kePrint-0.0.1/kePrint.js"></script>
+    <link href="index_files/lightable-0.0.1/lightable.css" rel="stylesheet" />
+</head>
+<body>
+  <div class="reveal">
+    <div class="slides">
+
+<section>
+    <h1 class="title">Ensinando Avaliação de impacto</h1>
+  <h1 class="subtitle">Utilizando simulações como uma ferramenta
+auxiliar de aprendizagem</h1>
+    <h2 class="author">Lucas Fernandes de Magalhães</h2>
+</section>
+
+<section id="introdução" class="slide level2">
+<h2>Introdução</h2>
+<p><span class="math display">\[
+\]</span></p>
+<p>Um dos principais desafios metodológicos enfrentados pela Economia e
+Ciência Política consiste em avaliar o impacto de políticas
+públicas.</p>
+<ul>
+<li><p>A política de transferência condicional de renda aumentou os anos
+de escolaridade dos filhos das famílias beneficiadas pelo
+programa?</p></li>
+<li><p>O aumento do salário mínimo eleva o desemprego?</p></li>
+</ul>
+</section>
+<section id="introdução-1" class="slide level2">
+<h2>Introdução</h2>
+<p><span class="math display">\[
+\]</span></p>
+<p>Para evitar vieses na análise, são utilizados desenhos experimentais
+ou quase-experimentais de difícil compreensão para alunos pouco versados
+em econometria e estatística</p>
+<p>Neste trabalho proponho a utilização de bases simuladas para ensinar
+de forma didática a intuição por trás desses desenhos e apresento
+exemplos práticos.</p>
+<p>Para tanto, foi desenvolvida uma função em R que pode ser acessada
+pelo <a href="https://github.com/Lucasfm108/causalsim">link</a></p>
+</section>
+<section id="o-problema-fundamental-da-inferência-causal"
+class="slide level2">
+<h2>O problema fundamental da inferência causal</h2>
+<p><span class="math display">\[
+\]</span></p>
+<p><img src="index_files/figure-revealjs/unnamed-chunk-2-1.png" width="768" /></p>
+</section>
+<section id="o-problema-fundamental-da-inferência-causal-1"
+class="slide level2">
+<h2>O problema fundamental da inferência causal</h2>
+<p><span class="math display">\[
+\]</span></p>
+<table class=" lightable-paper lightable-hover" style="font-family: &quot;Arial Narrow&quot;, arial, helvetica, sans-serif; width: auto !important; margin-left: auto; margin-right: auto;">
+<caption>
+Nível de escolaridade x Renda entre grupos incomparáveis
+</caption>
+<thead>
+<tr>
+<th style="text-align:left;">
+</th>
+<th style="text-align:left;">
+Escolaridade
+</th>
+<th style="text-align:right;">
+Renda.Média
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left;">
+Grupo 1
+</td>
+<td style="text-align:left;">
+Ensino superior
+</td>
+<td style="text-align:right;">
+4000
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Grupo 2
+</td>
+<td style="text-align:left;">
+Ensino Médio/Fundamental
+</td>
+<td style="text-align:right;">
+1000
+</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="o-problema-fundamental-da-inferência-causal-2"
+class="slide level2">
+<h2>O problema fundamental da inferência causal</h2>
+<p><span class="math display">\[
+\]</span></p>
+<p>Podemos afirmar com segurança que obter um diploma de nível superior
+“causa” um aumento médio na renda mensal de R$3.000,00?</p>
+<p><span class="math inline">\(Renda_{pais}[Alunos_{\text{Ensino
+superior}}] &gt; Renda_{pais}[Alunos_{\text{Ensino
+Médio/Fundamental}}]\)</span></p>
+<p><span class="math inline">\(cor(Renda_{pais},Renda_{filhos}) \neq
+0\)</span></p>
+<p>Em outras palavras, se a renda dos pais é associada ao tratamento e
+ao <em>outcome</em>, ela é uma confusora.</p>
+</section>
+<section id="o-problema-fundamental-da-inferência-causal-3"
+class="slide level2">
+<h2>O problema fundamental da inferência causal</h2>
+<p><img src="index_files/figure-revealjs/unnamed-chunk-4-1.png" width="768" /></p>
+</section>
+<section id="o-problema-fundamental-da-inferência-causal-4"
+class="slide level2">
+<h2>O problema fundamental da inferência causal</h2>
+<p><span class="math display">\[
+\]</span></p>
+<p>Em outras palavras, na presença de confusoras como a renda dos pais,
+o grupo que cursou a graduação, mesmo sem ter cursado, naturalmente
+teria uma renda maior que a do outro grupo em função de diversas
+variáveis para além do diploma em ensino superior.</p>
+<p>No fundo, isso nos remete a um problema de incomparabilidade entre
+grupos. Aquele que cursou a graduação não é diretamente comparável
+àquele que possui apenas ensino médio ou fundamental</p>
+<p>Como contornar esse problema??</p>
+</section>
+<section id="o-problema-fundamental-da-inferência-causal-5"
+class="slide level2">
+<h2>O problema fundamental da inferência causal</h2>
+<p><img data-src="whatif.png" alt="What if" /></p>
+</section>
+<section id="o-problema-fundamental-da-inferência-causal-6"
+class="slide level2">
+<h2>O problema fundamental da inferência causal</h2>
+<p><span class="math display">\[
+\]</span></p>
+<p>Idealmente, seria possível comparar a renda do grupo que cursou a
+graduação com a renda desse mesmo grupo, mas em uma dimensão paralela em
+que eles apenas obtiveram o ensino médio/fundamental.</p>
+<p>Esses dois grupos seriam perfeitamente iguais em tudo (forma de
+criação, estrutura familiar, renda dos pais, capital social, etc.),
+sendo a única diferença entre eles o nível de escolaridade (<span
+class="math inline">\(Y \perp X\)</span>).</p>
+</section>
+<section id="o-problema-fundamental-da-inferência-causal-7"
+class="slide level2">
+<h2>O problema fundamental da inferência causal</h2>
+<p><span class="math display">\[
+\]</span></p>
+<p>De posse das rendas de ambos os grupos, a mera diferença de médias
+retornaria o verdadeiro efeito do nível escolaridade (X) sobre a renda
+(Y).</p>
+<p>Porém, viagens interdimensionais ainda não existem. Eis o problema
+fundamental da inferência causal.</p>
+<p>Todavia, embora contrafactuais perfeitos não existam, às vezes é
+possível encontrar nos dados uma boa aproximação deles.</p>
+<p>Ou seja, grupos que, embora não sejam perfeitamente iguais, são
+semelhantes a ponto de permitirem a exclusão das explicações
+alternativas para o efeito de X sobre Y (identificação)</p>
+</section>
+<section id="o-problema-fundamental-da-inferência-causal-8"
+class="slide level2">
+<h2>O problema fundamental da inferência causal</h2>
+<p><span class="math display">\[
+\]</span></p>
+<p><img data-src="img1.png" /></p>
+</section>
+<section id="desenho-experimental" class="slide level2">
+<h2>Desenho Experimental</h2>
+<p><span class="math display">\[
+\]</span></p>
+<p>Desenhos experimentais recorrem à aleatorização/randomização do
+tratamento entre os elementos da amostra, nome dado à variável de
+interesse que imagina-se exercer algum impacto sobre a variável
+dependente ou resposta.</p>
+<p>Quando há a aleatorização do tratamento, os dois grupos criados (GT -
+grupo de tratamento e GC - grupo de controle) são, em média, comparáveis
+tanto nas variáveis observadas (aquelas que constam da tabela) quanto
+nas não observadas, sendo a única diferença entre eles a
+ausência/presência do tratamento</p>
+<p><span class="math inline">\(Y \perp X\)</span></p>
+</section>
+<section id="desenho-experimental-1" class="slide level2">
+<h2>Desenho Experimental</h2>
+<p><span class="math display">\[
+\]</span></p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">source</span>(<span class="st">&quot;causalsim.R&quot;</span>)</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">42</span>)</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>bd <span class="ot">&lt;-</span> <span class="fu">causalsim</span>(<span class="at">n=</span><span class="dv">10000</span>,<span class="at">treat_effect=</span><span class="dv">500</span>, <span class="at">prob_treat =</span> <span class="fl">0.5</span>,</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>              <span class="at">covar_dist=</span><span class="fu">c</span>(<span class="st">&quot;binom&quot;</span>,<span class="st">&quot;binom&quot;</span>,<span class="st">&quot;norm&quot;</span>),</span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>              <span class="at">covar_prob=</span><span class="fu">c</span>(<span class="fl">0.4</span>,<span class="fl">0.75</span>),</span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>              <span class="at">covar_mean=</span><span class="fu">c</span>(<span class="dv">3000</span>),</span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>              <span class="at">covar_sd=</span><span class="fu">c</span>(<span class="dv">500</span>),</span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>              <span class="at">covar_effect =</span> <span class="fu">c</span>(<span class="dv">100</span>,<span class="dv">150</span>,<span class="dv">3</span>),</span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>              <span class="at">intercept=</span><span class="dv">500</span>)</span></code></pre></div>
+</section>
+<section id="desenho-experimental-2" class="slide level2">
+<h2>Desenho Experimental</h2>
+<p><span class="math display">\[
+\]</span></p>
+<table class=" lightable-paper lightable-hover" style="font-family: &quot;Arial Narrow&quot;, arial, helvetica, sans-serif; width: auto !important; margin-left: auto; margin-right: auto;">
+<caption>
+Primeiras 10 linhas da tabela criada pela função causalsim
+</caption>
+<thead>
+<tr>
+<th style="text-align:right;">
+id
+</th>
+<th style="text-align:right;">
+cursou_faculdade
+</th>
+<th style="text-align:right;">
+renda_pais
+</th>
+<th style="text-align:left;">
+sexo
+</th>
+<th style="text-align:left;">
+cor
+</th>
+<th style="text-align:right;">
+renda
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:right;">
+2490.765
+</td>
+<td style="text-align:left;">
+F
+</td>
+<td style="text-align:left;">
+Branca
+</td>
+<td style="text-align:right;">
+8622.368
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+2
+</td>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:right;">
+3829.584
+</td>
+<td style="text-align:left;">
+M
+</td>
+<td style="text-align:left;">
+Branca
+</td>
+<td style="text-align:right;">
+12739.722
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+3
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+4459.290
+</td>
+<td style="text-align:left;">
+M
+</td>
+<td style="text-align:left;">
+Outras
+</td>
+<td style="text-align:right;">
+13978.181
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+4
+</td>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:right;">
+4211.436
+</td>
+<td style="text-align:left;">
+F
+</td>
+<td style="text-align:left;">
+Branca
+</td>
+<td style="text-align:right;">
+13784.168
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+5
+</td>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:right;">
+3217.400
+</td>
+<td style="text-align:left;">
+M
+</td>
+<td style="text-align:left;">
+Outras
+</td>
+<td style="text-align:right;">
+10751.873
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+6
+</td>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:right;">
+3564.278
+</td>
+<td style="text-align:left;">
+F
+</td>
+<td style="text-align:left;">
+Branca
+</td>
+<td style="text-align:right;">
+11842.716
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+7
+</td>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:right;">
+3184.713
+</td>
+<td style="text-align:left;">
+F
+</td>
+<td style="text-align:left;">
+Outras
+</td>
+<td style="text-align:right;">
+10555.032
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+8
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+3238.991
+</td>
+<td style="text-align:left;">
+F
+</td>
+<td style="text-align:left;">
+Branca
+</td>
+<td style="text-align:right;">
+10367.184
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+9
+</td>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:right;">
+3088.039
+</td>
+<td style="text-align:left;">
+M
+</td>
+<td style="text-align:left;">
+Branca
+</td>
+<td style="text-align:right;">
+10513.628
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+10
+</td>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:right;">
+3276.725
+</td>
+<td style="text-align:left;">
+F
+</td>
+<td style="text-align:left;">
+Branca
+</td>
+<td style="text-align:right;">
+10979.954
+</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="desenho-experimental-3" class="slide level2">
+<h2>Desenho Experimental</h2>
+<p><span class="math display">\[
+\]</span></p>
+<p><img src="index_files/figure-revealjs/unnamed-chunk-8-1.png" width="1152" /></p>
+</section>
+<section id="desenho-experimental-estimação" class="slide level2">
+<h2>Desenho Experimental: estimação</h2>
+<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">round</span>(<span class="fu">mean</span>(bd<span class="sc">$</span>renda[bd<span class="sc">$</span>cursou_faculdade<span class="sc">==</span><span class="dv">1</span>])<span class="sc">-</span><span class="fu">mean</span>(bd<span class="sc">$</span>renda[bd<span class="sc">$</span>cursou_faculdade<span class="sc">==</span><span class="dv">0</span>]),<span class="dv">0</span>)</span></code></pre></div>
+<pre><code>## [1] 470</code></pre>
+<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="fu">t.test</span>(bd<span class="sc">$</span>renda[bd<span class="sc">$</span>cursou_faculdade<span class="sc">==</span><span class="dv">1</span>],bd<span class="sc">$</span>renda[bd<span class="sc">$</span>cursou_faculdade<span class="sc">==</span><span class="dv">0</span>]) </span></code></pre></div>
+<pre><code>## 
+##  Welch Two Sample t-test
+## 
+## data:  bd$renda[bd$cursou_faculdade == 1] and bd$renda[bd$cursou_faculdade == 0]
+## t = 15.775, df = 9996.1, p-value &lt; 2.2e-16
+## alternative hypothesis: true difference in means is not equal to 0
+## 95 percent confidence interval:
+##  411.9292 528.8268
+## sample estimates:
+## mean of x mean of y 
+## 10125.920  9655.542</code></pre>
+</section>
+<section id="desenho-experimental-estimação-1" class="slide level2">
+<h2>Desenho Experimental: estimação</h2>
+<table style="text-align:center">
+<caption>
+<strong>Resultados dos modelos de regressão linear</strong>
+</caption>
+<tr>
+<td colspan="3" style="border-bottom: 1px solid black">
+</td>
+</tr>
+<tr>
+<td style="text-align:left">
+</td>
+<td colspan="2">
+<em>Dependent variable:</em>
+</td>
+</tr>
+<tr>
+<td>
+</td>
+<td colspan="2" style="border-bottom: 1px solid black">
+</td>
+</tr>
+<tr>
+<td style="text-align:left">
+</td>
+<td colspan="2">
+Renda
+</td>
+</tr>
+<tr>
+<td style="text-align:left">
+</td>
+<td>
+Mod. sem covar
+</td>
+<td>
+Mod. com covar
+</td>
+</tr>
+<tr>
+<td colspan="3" style="border-bottom: 1px solid black">
+</td>
+</tr>
+<tr>
+<td style="text-align:left">
+Ensino superior
+</td>
+<td>
+470.378<sup>***</sup>
+</td>
+<td>
+499.987<sup>***</sup>
+</td>
+</tr>
+<tr>
+<td style="text-align:left">
+</td>
+<td>
+(29.818)
+</td>
+<td>
+(0.020)
+</td>
+</tr>
+<tr>
+<td style="text-align:left">
+Sexo (Ref.: Masculino
+</td>
+<td>
+</td>
+<td>
+100.020<sup>***</sup>
+</td>
+</tr>
+<tr>
+<td style="text-align:left">
+</td>
+<td>
+</td>
+<td>
+(0.021)
+</td>
+</tr>
+<tr>
+<td style="text-align:left">
+Cor (Ref.:Branca)
+</td>
+<td>
+</td>
+<td>
+149.999<sup>***</sup>
+</td>
+</tr>
+<tr>
+<td style="text-align:left">
+</td>
+<td>
+</td>
+<td>
+(0.023)
+</td>
+</tr>
+<tr>
+<td style="text-align:left">
+Renda dos pais
+</td>
+<td>
+</td>
+<td>
+3.000<sup>***</sup>
+</td>
+</tr>
+<tr>
+<td style="text-align:left">
+</td>
+<td>
+</td>
+<td>
+(0.00002)
+</td>
+</tr>
+<tr>
+<td style="text-align:left">
+Constant
+</td>
+<td>
+9,655.542<sup>***</sup>
+</td>
+<td>
+500.004<sup>***</sup>
+</td>
+</tr>
+<tr>
+<td style="text-align:left">
+</td>
+<td>
+(21.082)
+</td>
+<td>
+(0.065)
+</td>
+</tr>
+<tr>
+<td colspan="3" style="border-bottom: 1px solid black">
+</td>
+</tr>
+<tr>
+<td style="text-align:left">
+Observations
+</td>
+<td>
+10,000
+</td>
+<td>
+10,000
+</td>
+</tr>
+<tr>
+<td style="text-align:left">
+R<sup>2</sup>
+</td>
+<td>
+0.024
+</td>
+<td>
+1.000
+</td>
+</tr>
+<tr>
+<td style="text-align:left">
+Adjusted R<sup>2</sup>
+</td>
+<td>
+0.024
+</td>
+<td>
+1.000
+</td>
+</tr>
+<tr>
+<td style="text-align:left">
+Residual Std. Error
+</td>
+<td>
+1,490.891 (df = 9998)
+</td>
+<td>
+1.005 (df = 9995)
+</td>
+</tr>
+<tr>
+<td style="text-align:left">
+F Statistic
+</td>
+<td>
+248.853<sup>***</sup> (df = 1; 9998)
+</td>
+<td>
+5,638,304,298.000<sup>***</sup> (df = 4; 9995)
+</td>
+</tr>
+<tr>
+<td colspan="3" style="border-bottom: 1px solid black">
+</td>
+</tr>
+<tr>
+<td style="text-align:left">
+<em>Note:</em>
+</td>
+<td colspan="2" style="text-align:right">
+<sup><em></sup>p&lt;0.1; <sup><strong></sup>p&lt;0.05;
+<sup></strong></em></sup>p&lt;0.01
+</td>
+</tr>
+</table>
+</section>
+<section id="desenho-experimental-estimação-2" class="slide level2">
+<h2>Desenho Experimental: estimação</h2>
+<p><span class="math display">\[
+\]</span></p>
+<p>Entretanto, em muitos casos, como no próprio exemplo explorado, é
+inviável a randomização da política pública.</p>
+<p>Nessas situações, não há garantia de que os dois grupos, aquele que
+se beneficiou de uma política e o grupo de controle, sejam
+comparáveis</p>
+<p>A saída é recorrer aos desenhos quase-experimentais que “fabricam”
+grupos comparáveis, de tal modo que a distribuição do tratamento fica
+“como se fosse randomizada”.</p>
+</section>
+<section id="pareamento" class="title-slide slide level1">
+<h1>Pareamento</h1>
+<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">42</span>)</span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>bd <span class="ot">&lt;-</span> <span class="fu">causalsim</span>(<span class="at">n=</span><span class="dv">10000</span>,<span class="at">treat_effect=</span><span class="dv">500</span>, <span class="at">prob_treat =</span> <span class="fl">0.5</span>,</span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>              <span class="at">covar_dist=</span><span class="fu">c</span>(<span class="st">&quot;binom&quot;</span>,<span class="st">&quot;binom&quot;</span>,<span class="st">&quot;norm&quot;</span>),</span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>              <span class="at">covar_prob=</span><span class="fu">c</span>(<span class="fl">0.4</span>,<span class="fl">0.75</span>),</span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a>              <span class="at">covar_mean=</span><span class="fu">c</span>(<span class="dv">3000</span>),</span>
+<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a>              <span class="at">covar_sd=</span><span class="fu">c</span>(<span class="dv">500</span>),</span>
+<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a>              <span class="at">covar_effect =</span> <span class="fu">c</span>(<span class="dv">100</span>,<span class="dv">150</span>,<span class="dv">3</span>),</span>
+<span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a>              <span class="at">treat_covar =</span> <span class="fu">c</span>(<span class="fl">0.4</span>,<span class="fl">0.6</span>,<span class="fl">0.5</span>), <span class="co">#Associação entre o tratamento e as covariáveis</span></span>
+<span id="cb6-9"><a href="#cb6-9" aria-hidden="true" tabindex="-1"></a>              <span class="at">intercept=</span><span class="dv">500</span>)</span></code></pre></div>
+</section>
+
+<section id="pareamento-desbalanceamento"
+class="title-slide slide level1">
+<h1>Pareamento: desbalanceamento</h1>
+<p><img src="index_files/figure-revealjs/unnamed-chunk-14-1.png" width="1152" /></p>
+</section>
+
+<section id="pareamento-estimação" class="title-slide slide level1">
+<h1>Pareamento: estimação</h1>
+<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="fu">round</span>(<span class="fu">mean</span>(bd<span class="sc">$</span>renda[bd<span class="sc">$</span>cursou_faculdade<span class="sc">==</span><span class="dv">1</span>])<span class="sc">-</span><span class="fu">mean</span>(bd<span class="sc">$</span>renda[bd<span class="sc">$</span>cursou_faculdade<span class="sc">==</span><span class="dv">0</span>]),<span class="dv">0</span>)</span></code></pre></div>
+<pre><code>## [1] 2057</code></pre>
+<div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="fu">t.test</span>(bd<span class="sc">$</span>renda[bd<span class="sc">$</span>cursou_faculdade<span class="sc">==</span><span class="dv">1</span>],bd<span class="sc">$</span>renda[bd<span class="sc">$</span>cursou_faculdade<span class="sc">==</span><span class="dv">0</span>]) </span></code></pre></div>
+<pre><code>## 
+##  Welch Two Sample t-test
+## 
+## data:  bd$renda[bd$cursou_faculdade == 1] and bd$renda[bd$cursou_faculdade == 0]
+## t = 79.295, df = 9995.4, p-value &lt; 2.2e-16
+## alternative hypothesis: true difference in means is not equal to 0
+## 95 percent confidence interval:
+##  2006.324 2108.032
+## sample estimates:
+## mean of x mean of y 
+## 10918.244  8861.066</code></pre>
+</section>
+
+<section id="pareamento-estimação-1" class="title-slide slide level1">
+<h1>Pareamento: estimação</h1>
+<table style="text-align:center">
+<caption>
+<strong>Resultados dos modelos de regressão linear</strong>
+</caption>
+<tr>
+<td colspan="3" style="border-bottom: 1px solid black">
+</td>
+</tr>
+<tr>
+<td style="text-align:left">
+</td>
+<td colspan="2">
+<em>Dependent variable:</em>
+</td>
+</tr>
+<tr>
+<td>
+</td>
+<td colspan="2" style="border-bottom: 1px solid black">
+</td>
+</tr>
+<tr>
+<td style="text-align:left">
+</td>
+<td colspan="2">
+Renda
+</td>
+</tr>
+<tr>
+<td style="text-align:left">
+</td>
+<td>
+Mod. sem covar
+</td>
+<td>
+Mod. com covar
+</td>
+</tr>
+<tr>
+<td colspan="3" style="border-bottom: 1px solid black">
+</td>
+</tr>
+<tr>
+<td style="text-align:left">
+Ensino superior
+</td>
+<td>
+2,057.178<sup>***</sup>
+</td>
+<td>
+499.995<sup>***</sup>
+</td>
+</tr>
+<tr>
+<td style="text-align:left">
+</td>
+<td>
+(25.943)
+</td>
+<td>
+(0.026)
+</td>
+</tr>
+<tr>
+<td style="text-align:left">
+Sexo (Ref.: Masculino
+</td>
+<td>
+</td>
+<td>
+100.002<sup>***</sup>
+</td>
+</tr>
+<tr>
+<td style="text-align:left">
+</td>
+<td>
+</td>
+<td>
+(0.022)
+</td>
+</tr>
+<tr>
+<td style="text-align:left">
+Cor (Ref.:Branca)
+</td>
+<td>
+</td>
+<td>
+149.984<sup>***</sup>
+</td>
+</tr>
+<tr>
+<td style="text-align:left">
+</td>
+<td>
+</td>
+<td>
+(0.026)
+</td>
+</tr>
+<tr>
+<td style="text-align:left">
+Renda dos pais
+</td>
+<td>
+</td>
+<td>
+3.000<sup>***</sup>
+</td>
+</tr>
+<tr>
+<td style="text-align:left">
+</td>
+<td>
+</td>
+<td>
+(0.00002)
+</td>
+</tr>
+<tr>
+<td style="text-align:left">
+Constant
+</td>
+<td>
+8,861.066<sup>***</sup>
+</td>
+<td>
+500.020<sup>***</sup>
+</td>
+</tr>
+<tr>
+<td style="text-align:left">
+</td>
+<td>
+(18.343)
+</td>
+<td>
+(0.067)
+</td>
+</tr>
+<tr>
+<td colspan="3" style="border-bottom: 1px solid black">
+</td>
+</tr>
+<tr>
+<td style="text-align:left">
+Observations
+</td>
+<td>
+10,000
+</td>
+<td>
+10,000
+</td>
+</tr>
+<tr>
+<td style="text-align:left">
+R<sup>2</sup>
+</td>
+<td>
+0.386
+</td>
+<td>
+1.000
+</td>
+</tr>
+<tr>
+<td style="text-align:left">
+Adjusted R<sup>2</sup>
+</td>
+<td>
+0.386
+</td>
+<td>
+1.000
+</td>
+</tr>
+<tr>
+<td style="text-align:left">
+Residual Std. Error
+</td>
+<td>
+1,297.170 (df = 9998)
+</td>
+<td>
+1.005 (df = 9995)
+</td>
+</tr>
+<tr>
+<td style="text-align:left">
+F Statistic
+</td>
+<td>
+6,287.670<sup>***</sup> (df = 1; 9998)
+</td>
+<td>
+6,783,338,212.000<sup>***</sup> (df = 4; 9995)
+</td>
+</tr>
+<tr>
+<td colspan="3" style="border-bottom: 1px solid black">
+</td>
+</tr>
+<tr>
+<td style="text-align:left">
+<em>Note:</em>
+</td>
+<td colspan="2" style="text-align:right">
+<sup><em></sup>p&lt;0.1; <sup><strong></sup>p&lt;0.05;
+<sup></strong></em></sup>p&lt;0.01
+</td>
+</tr>
+</table>
+</section>
+
+<section id="simulação-de-paradoxo-de-simpson"
+class="title-slide slide level1">
+<h1>Simulação de “Paradoxo de Simpson”</h1>
+<div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">42</span>)</span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>bd <span class="ot">&lt;-</span> <span class="fu">causalsim</span>(<span class="at">n=</span><span class="dv">10000</span>,<span class="at">treat_effect=</span><span class="sc">-</span><span class="dv">400</span>, <span class="at">prob_treat =</span> <span class="fl">0.5</span>,</span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>                <span class="at">covar_dist=</span><span class="fu">c</span>(<span class="st">&quot;norm&quot;</span>),</span>
+<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a>                <span class="co">#covar_prob=c(0.4),</span></span>
+<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a>                <span class="at">covar_mean=</span><span class="fu">c</span>(<span class="dv">400</span>),</span>
+<span id="cb11-6"><a href="#cb11-6" aria-hidden="true" tabindex="-1"></a>                <span class="at">covar_sd=</span><span class="fu">c</span>(<span class="dv">50</span>),</span>
+<span id="cb11-7"><a href="#cb11-7" aria-hidden="true" tabindex="-1"></a>                <span class="at">covar_effect =</span> <span class="fu">c</span>(<span class="dv">1</span>),</span>
+<span id="cb11-8"><a href="#cb11-8" aria-hidden="true" tabindex="-1"></a>                <span class="at">treat_covar =</span> <span class="fu">c</span>(<span class="fl">0.7</span>), <span class="co">#Associação entre o tratamento e as covariáveis</span></span>
+<span id="cb11-9"><a href="#cb11-9" aria-hidden="true" tabindex="-1"></a>                <span class="at">intercept=</span><span class="dv">500</span>)</span></code></pre></div>
+</section>
+
+<section id="simulação-de-paradoxo-de-simpson-1"
+class="title-slide slide level1">
+<h1>Simulação de “Paradoxo de Simpson”</h1>
+<p><img src="index_files/figure-revealjs/unnamed-chunk-18-1.png" width="768" /></p>
+</section>
+    </div>
+  </div>
+
+  <script src="index_files/reveal.js-3.3.0.1/lib/js/head.min.js"></script>
+  <script src="index_files/reveal.js-3.3.0.1/js/reveal.js"></script>
+
+  <script>
+
+      // Full list of configuration options available at:
+      // https://github.com/hakimel/reveal.js#configuration
+      Reveal.initialize({
+        // Display controls in the bottom right corner
+        controls: true,
+        // Display a presentation progress bar
+        progress: true,
+        // Push each slide change to the browser history
+        history: true,
+        // Enable keyboard shortcuts for navigation
+        keyboard: true,
+        // Enable the slide overview mode
+        overview: true,
+        // Vertical centering of slides
+        center: false,
+        // Enables touch navigation on devices with touch input
+        touch: true,
+        // Turns fragments on and off globally
+        fragments: true,
+        // Flags if we should show a help overlay when the questionmark
+        // key is pressed
+        help: true,
+        // Number of milliseconds between automatically proceeding to the
+        // next slide, disabled when set to 0, this value can be overwritten
+        // by using a data-autoslide attribute on your slides
+        autoSlide: 0,
+        // Stop auto-sliding after user input
+        autoSlideStoppable: true,
+        // Transition style
+        transition: 'slide', // none/fade/slide/convex/concave/zoom
+        // Transition speed
+        transitionSpeed: 'default', // default/fast/slow
+        // Transition style for full page slide backgrounds
+        backgroundTransition: 'slide', // none/fade/slide/convex/concave/zoom
+        // Number of slides away from the current that are visible
+        viewDistance: 3,
+        // The "normal" size of the presentation, aspect ratio will be preserved
+        // when the presentation is scaled to fit different resolutions. Can be
+        // specified using percentage units.
+        width: '100%',
+        height: '100%',
+
+
+
+        // Optional reveal.js plugins
+        dependencies: [
+          { src: 'index_files/reveal.js-3.3.0.1/plugin/search/search.js', async: true },
+          { src: 'index_files/reveal.js-3.3.0.1/plugin/zoom-js/zoom.js', async: true },
+        ]
+      });
+    </script>
+  <!-- dynamically load mathjax for compatibility with self-contained -->
+  <script>
+    (function () {
+      var script = document.createElement("script");
+      script.type = "text/javascript";
+      script.src  = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+      document.getElementsByTagName("head")[0].appendChild(script);
+    })();
+  </script>
+
+<script>
+  (function() {
+    if (window.jQuery) {
+      Reveal.addEventListener( 'slidechanged', function(event) {  
+        window.jQuery(event.previousSlide).trigger('hidden');
+        window.jQuery(event.currentSlide).trigger('shown');
+      });
+    }
+  })();
+</script>
+
+
+  </body>
+</html>
